@@ -39,8 +39,10 @@ Le site redevient identique à la version précédente en moins d'une minute.
 ## Sécurité — ce qui est en place
 
 - **Aucun formulaire** : pas d'injection, pas de spam via formulaire, pas de relais de mail possible.
-  Le contact passe par un lien `mailto:` dont l'adresse est reconstruite en JavaScript
-  (elle n'est pas en clair dans le HTML, ce qui limite la collecte par les robots).
+  Le contact passe par un lien `mailto:` : c'est la messagerie du visiteur qui envoie, jamais le serveur.
+  L'adresse n'apparaît ni dans le HTML ni à l'écran ; elle est assemblée au clic seulement
+  (les robots qui collectent des adresses ne la trouvent pas). Les mentions légales l'affichent
+  sous la forme « romain [at] zenocoders.com », exigée par la loi et non exploitable telle quelle.
 - **Méthodes HTTP** : seuls GET et HEAD sont acceptés (405 sinon) ; corps de requête limité à 1 Ko.
 - **En-têtes** : CSP stricte (scripts du site uniquement, aucune ressource externe, `form-action 'none'`,
   `frame-ancestors 'none'`), HSTS, `nosniff`, `X-Frame-Options: DENY`, `Referrer-Policy`,
