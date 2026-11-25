@@ -1,0 +1,21 @@
+@font-face{font-family:'Archivo';src:url(assets/fonts/archivo-var.woff2) format('woff2');font-weight:100 900;font-stretch:62% 125%;font-display:swap}
+@font-face{font-family:'Inter';src:url(assets/fonts/inter-400.woff2) format('woff2');font-weight:400;font-display:swap}
+@font-face{font-family:'Inter';src:url(assets/fonts/inter-500.woff2) format('woff2');font-weight:500;font-display:swap}
+@font-face{font-family:'Inter';src:url(assets/fonts/inter-600.woff2) format('woff2');font-weight:600;font-display:swap}
+@font-face{font-family:'JetBrains Mono';src:url(assets/fonts/jbmono-400.woff2) format('woff2');font-weight:400;font-display:swap}
+@font-face{font-family:'JetBrains Mono';src:url(assets/fonts/jbmono-500.woff2) format('woff2');font-weight:500;font-display:swap}
+html{scroll-behavior:smooth}
+@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
+a:focus-visible{outline:2px solid #FF5B37;outline-offset:3px}
+body{margin:0;background:#0F100D}
+a{color:#ECE7DC;text-decoration:none}a:hover{color:#FF5B37}
+.d{font-family:'Archivo',sans-serif;font-stretch:118%;letter-spacing:-0.02em}
+.m{font-family:'JetBrains Mono',monospace;letter-spacing:0.02em}
+.m-row{}
+@media (max-width:720px){
+.m-row{grid-template-columns:1fr!important;gap:6px!important}
+.m-row>*{grid-column:auto!important}
+.sec{padding-top:72px!important;padding-left:20px!important;padding-right:20px!important}
+.navl{display:none!important}
+.hv{height:240px!important}
+}

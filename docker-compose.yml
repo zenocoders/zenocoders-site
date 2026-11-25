@@ -1,0 +1,52 @@
+# zenocoders.com — site vitrine statique.
+# Projet Docker Manager « site » sur le VPS. Mise en production = redémarrer le projet :
+# « site-fetch » récupère la branche main du dépôt public, puis nginx sert les fichiers.
+# Aucun port publié : seul Caddy (réseau « web ») joint le conteneur.
+
+services:
+  site-fetch:
+    image: alpine/git:2.47.2
+    entrypoint: ["/bin/sh", "-c"]
+    command:
+      - |
+        set -eu
+        rm -rf /srv/tmp
+        git clone --depth 1 --branch main https://github.com/zenocoders/zenocoders-site.git /srv/tmp
+        rm -rf /srv/www/* /srv/conf/*
+        cp -a /srv/tmp/public/. /srv/www/
+        cp /srv/tmp/nginx/default.conf /srv/tmp/nginx/security-headers.inc /srv/conf/
+        echo "Version en ligne : $$(git -C /srv/tmp rev-parse --short HEAD)"
+        rm -rf /srv/tmp
+    volumes:
+      - www:/srv/www
+      - conf:/srv/conf
+    restart: "no"
+    security_opt: [no-new-privileges:true]
+
+  site:
+    image: nginxinc/nginx-unprivileged:1.27-alpine
+    container_name: zenocoders-site
+    depends_on:
+      site-fetch:
+        condition: service_completed_successfully
+    restart: unless-stopped
+    read_only: true
+    tmpfs: [/tmp]
+    cap_drop: [ALL]
+    security_opt: [no-new-privileges:true]
+    mem_limit: 128m
+    volumes:
+      - www:/usr/share/nginx/html:ro
+      - conf:/etc/nginx/conf.d:ro
+    networks: [web]
+    logging:
+      driver: json-file
+      options: { max-size: 10m, max-file: "3" }
+
+volumes:
+  www:
+  conf:
+
+networks:
+  web:
+    external: true
