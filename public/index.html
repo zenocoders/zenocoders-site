@@ -1,5 +1,9 @@
 <!doctype html>
-<html lang="fr">
+<!-- FOND DU SITE : seule ligne à modifier pour changer d'ambiance.
+     data-fond : encre | vice-crepuscule | vice-nuit | vice-aube
+     --fond-intensite : 0 à 1 (force du dégradé) · --fond-lisibilite : 0 à 1 (voile derrière le texte)
+     data-fond-anime : oui | non (dérive lente du fond et du soleil) -->
+<html lang="fr" data-fond="vice-crepuscule" data-fond-anime="oui" style="--fond-intensite: 0.8; --fond-lisibilite: 0.55">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -20,6 +24,8 @@
 <body>
 <div style="background: #0F100D; color: #ECE7DC; font-family: 'Inter', sans-serif; font-size: 17px; line-height: 1.55; min-height: 100vh">
 
+<div class="zone-fond zone-haut">
+<div class="fond" aria-hidden="true"><div class="fond-ciel"></div><div class="fond-soleil"></div><div class="fond-horizon"></div><svg class="fond-grain"><filter id="grain-haut"><feTurbulence type="fractalNoise" baseFrequency="0.85" numOctaves="2" stitchTiles="stitch"></feTurbulence></filter><rect width="100%" height="100%" filter="url(#grain-haut)"></rect></svg><div class="fond-voile"></div></div>
 <!-- NAV -->
 <header style="border-bottom: 1px solid #2A2C27">
 <nav style="max-width: 1280px; margin: 0 auto; padding: 20px 32px; display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 16px">
@@ -51,7 +57,8 @@
 <video preload="auto" src="assets/media/hero-loop.mp4" poster="assets/media/hero-poster.webp" autoplay muted loop playsinline webkit-playsinline disablepictureinpicture aria-hidden="true" style="position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover"></video>
 <div class="m" style="position: absolute; right: 20px; bottom: 16px; font-size: 12px; color: #ECE7DC">~40 jeux en roadmap · 2 streams de delivery · daily à 9h30</div>
 </div>
-</section><section style="border-top: 1px solid #2A2C27; border-bottom: 1px solid #2A2C27">
+</section>
+</div><section style="border-top: 1px solid #2A2C27; border-bottom: 1px solid #2A2C27">
 <div style="max-width: 1280px; margin: 0 auto; padding: 40px 32px; display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 32px">
 <div><div class="d" style="font-size: 48px; font-weight: 700">25 ans</div><div style="color: #A39E92; font-size: 15px">de projets SI, ERP et produits, depuis 2000</div></div>
 <div><div class="d" style="font-size: 48px; font-weight: 700">120 000</div><div style="color: #A39E92; font-size: 15px">utilisateurs couverts par un déploiement LMS multi-pays</div></div>
@@ -225,7 +232,8 @@
 </section>
 
 <!-- CONTACT -->
-<section id="contact" style="border-top: 1px solid #2A2C27; margin-top: 120px">
+<section id="contact" class="zone-fond zone-bas" style="border-top: 1px solid #2A2C27; margin-top: 120px">
+<div class="fond" aria-hidden="true"><div class="fond-ciel"></div><div class="fond-soleil"></div><div class="fond-horizon"></div><svg class="fond-grain"><filter id="grain-bas"><feTurbulence type="fractalNoise" baseFrequency="0.85" numOctaves="2" stitchTiles="stitch"></feTurbulence></filter><rect width="100%" height="100%" filter="url(#grain-bas)"></rect></svg><div class="fond-voile"></div></div>
 <div class="sec" style="max-width: 1280px; margin: 0 auto; padding: 120px 32px 64px">
 <h2 class="d" style="margin: 0; font-size: clamp(44px, 7vw, 104px); line-height: 0.95; font-weight: 800">Parlons de votre<br>prochain <span style="color: #FF5B37">delivery.</span></h2>
 <div style="display: flex; flex-wrap: wrap; gap: 16px; margin-top: 48px">

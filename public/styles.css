@@ -19,3 +19,26 @@ a{color:#ECE7DC;text-decoration:none}a:hover{color:#FF5B37}
 .navl{display:none!important}
 .hv{height:240px!important}
 }
+
+/* ---------- Fond paramétrable (réglé par data-fond sur <html>) ---------- */
+html{--fond-intensite:.8;--fond-lisibilite:.55}
+html[data-fond="vice-crepuscule"]{--fond-ciel:linear-gradient(180deg,#160A26 0%,#2E1050 22%,#6A1B6E 42%,#C2336F 60%,#FF6A3D 78%,#FFB15C 100%);--fond-soleil:linear-gradient(180deg,#FFD27A 0%,#FF7A3D 45%,#E0338F 100%);--fond-soleil-force:.95;--fond-horizon:rgba(255,177,92,.6)}
+html[data-fond="vice-nuit"]{--fond-ciel:radial-gradient(70% 60% at 78% 92%,rgba(224,51,143,.85) 0%,rgba(224,51,143,0) 70%),radial-gradient(60% 50% at 20% 100%,rgba(46,196,199,.55) 0%,rgba(46,196,199,0) 70%),linear-gradient(180deg,#0B0618 0%,#1A0B2E 60%,#2B1240 100%);--fond-soleil:linear-gradient(180deg,#FF4FA3 0%,#7A2BC2 100%);--fond-soleil-force:.7;--fond-horizon:rgba(46,196,199,.6)}
+html[data-fond="vice-aube"]{--fond-ciel:linear-gradient(180deg,#2A1446 0%,#8A3C8F 35%,#F0727F 62%,#FFB38A 82%,#FFE1B0 100%);--fond-soleil:linear-gradient(180deg,#FFF0C9 0%,#FFB15C 60%,#FF6A3D 100%);--fond-soleil-force:.9;--fond-horizon:rgba(255,225,176,.7)}
+.zone-fond{position:relative;overflow:hidden;isolation:isolate}
+.zone-fond>:not(.fond){position:relative;z-index:1}
+.fond{position:absolute;inset:0;z-index:0;pointer-events:none;display:none}
+html[data-fond^="vice"] .fond{display:block}
+.fond-ciel{position:absolute;inset:-6%;background:var(--fond-ciel);opacity:var(--fond-intensite)}
+.fond-soleil{position:absolute;left:76%;bottom:120px;width:min(420px,60vw);aspect-ratio:1;border-radius:50%;transform:translate(-50%,0);background:var(--fond-soleil);opacity:calc(var(--fond-soleil-force) * var(--fond-intensite));-webkit-mask-image:repeating-linear-gradient(180deg,#000 0 26px,transparent 26px 34px);mask-image:repeating-linear-gradient(180deg,#000 0 26px,transparent 26px 34px)}
+.fond-horizon{position:absolute;left:0;right:0;bottom:0;height:120px;background:linear-gradient(180deg,rgba(15,16,13,.2),#0F100D 85%);border-top:1px solid var(--fond-horizon)}
+.fond-grain{position:absolute;inset:0;width:100%;height:100%;opacity:.16;mix-blend-mode:overlay}
+.fond-voile{position:absolute;inset:0;background:linear-gradient(90deg,rgba(15,16,13,calc(.35 + var(--fond-lisibilite) * .6)) 0%,rgba(15,16,13,calc(var(--fond-lisibilite) * .5)) 60%,rgba(15,16,13,0) 100%)}
+.zone-bas .fond-soleil{bottom:-230px;left:82%}
+.zone-bas .fond-horizon{display:none}
+@keyframes fond-derive{0%,100%{transform:translateY(0) scale(1)}50%{transform:translateY(-3%) scale(1.04)}}
+@keyframes fond-soleil{0%,100%{transform:translate(-50%,6%)}50%{transform:translate(-50%,0)}}
+html[data-fond-anime="oui"] .fond-ciel{animation:fond-derive 18s ease-in-out infinite}
+html[data-fond-anime="oui"] .fond-soleil{animation:fond-soleil 14s ease-in-out infinite}
+@media (prefers-reduced-motion:reduce){.fond-ciel,.fond-soleil{animation:none!important}}
+@media (max-width:720px){.fond-soleil{left:70%;bottom:60px}.zone-bas .fond-soleil{bottom:-80px}}

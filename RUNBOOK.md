@@ -31,6 +31,21 @@ Internet ──443──> Caddy (projet Docker « proxy », HTTPS automatique)
    - `curl -s -o /dev/null -w "%{http_code}" -X POST https://zenocoders.com/` renvoie 405 ;
    - la vidéo d'ouverture se lance, le bouton e-mail ouvre la messagerie.
 
+## Changer l'ambiance du fond
+
+Tout se règle sur la balise `<html>` de `public/index.html` (une seule ligne, commentée juste au-dessus) :
+
+| Réglage | Valeurs |
+|---|---|
+| `data-fond` | `encre` (fond sombre d'origine), `vice-crepuscule`, `vice-nuit`, `vice-aube` |
+| `--fond-intensite` | de `0` (pas de dégradé) à `1` (dégradé plein) |
+| `--fond-lisibilite` | de `0` à `1` : voile sombre derrière le texte |
+| `data-fond-anime` | `oui` / `non` : dérive lente du fond et du soleil |
+
+Le fond s'applique à l'ouverture et au bloc contact ; le reste du site reste sombre.
+Les visiteurs qui ont réglé leur système sur « réduire les animations » voient un fond fixe.
+Puis : pousser sur `main` et redémarrer le projet « site » (voir ci-dessus).
+
 ## Retour arrière
 
 `git revert <commit>` sur `main`, pousser, puis redémarrer le projet « site » (étape 2).
