@@ -43,6 +43,7 @@ Tout se règle sur la balise `<html>` de `public/index.html` (une seule ligne, c
 | `data-fond-anime` | `oui` / `non` : dérive lente du fond et du soleil |
 
 Le fond s'applique à l'ouverture et au bloc contact ; le reste du site reste sombre.
+La vidéo suit le réglage : `encre` affiche la vidéo à l'encre, les fonds `vice-*` la vidéo néon.
 Les visiteurs qui ont réglé leur système sur « réduire les animations » voient un fond fixe.
 Puis : pousser sur `main` et redémarrer le projet « site » (voir ci-dessus).
 

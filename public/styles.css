@@ -42,3 +42,4 @@ html[data-fond-anime="oui"] .fond-ciel{animation:fond-derive 18s ease-in-out inf
 html[data-fond-anime="oui"] .fond-soleil{animation:fond-soleil 14s ease-in-out infinite}
 @media (prefers-reduced-motion:reduce){.fond-ciel,.fond-soleil{animation:none!important}}
 @media (max-width:720px){.fond-soleil{left:70%;bottom:60px}.zone-bas .fond-soleil{bottom:-80px}}
+.zone-haut .fond-soleil{display:none} /* la vidéo néon a déjà son soleil */

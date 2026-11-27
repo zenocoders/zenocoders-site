@@ -24,6 +24,12 @@
   if (!video) {
     return;
   }
+  // Le fond « encre » garde sa vidéo d'origine ; les fonds « vice » utilisent
+  // la vidéo néon déclarée dans le HTML.
+  if (document.documentElement.dataset.fond === 'encre' && video.dataset.encreSrc) {
+    video.setAttribute('poster', video.dataset.encrePoster);
+    video.setAttribute('src', video.dataset.encreSrc);
+  }
   if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
     video.removeAttribute('autoplay');
     video.pause();
